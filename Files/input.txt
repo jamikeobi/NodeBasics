@@ -1,0 +1,1 @@
+Hello my name is Jamike. This is a sample text file for reading node js.
