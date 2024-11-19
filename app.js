@@ -1,13 +1,12 @@
-const readline = require('readline');
-const fs = require('fs');
-const http = require('http');
-const url = require('url');
-const events = require('events');
+const readline = require("readline");
+const fs = require("fs");
+const http = require("http");
+const url = require("url");
+const events = require("events");
 
 //USER DEFINED MODULES
-const replaceHtml = require('./Module/replacehtml');
-const user = require('./Module/user');
-const { error, log } = require('console');
+const replaceHtml = require("./Module/replacehtml");
+const user = require("./Module/user");
 
 // const rl = readline.createInterface({
 //     input: process.stdin,
@@ -17,15 +16,13 @@ const { error, log } = require('console');
 // rl.question("Please enter your name: ", (name) => {
 //     console.log("You entered: " + name);
 //     rl.close();
-    
-// })
 
+// })
 
 // rl.on('close', () => {
 //     console.log("INterface closed");
 //     process.exit(1);
 // })
-
 
 // 2nd Lecture. Reading and writing to files Synchronous
 
@@ -34,7 +31,6 @@ const { error, log } = require('console');
 
 // let content = Data read from input.txt: ${textIn}. \nDate created ${new Date()}
 // fs.writeFileSync('./Files/output.txt', content)
-
 
 //Writing and reading files asynchronously
 
@@ -52,15 +48,14 @@ const { error, log } = require('console');
 //   })
 //   console.log('Reading File...')
 
-
-
-
-
 // Creating a simple web server
-const html = fs.readFileSync('./Template/index.html', 'utf-8');
-const products = JSON.parse(fs.readFileSync('./Data/products.json', 'utf-8'));
-const productListHtml = fs.readFileSync('./Template/productList.html', 'utf-8');
-const productDetailsHtml = fs.readFileSync('./Template/productDetails.html', 'utf-8');
+const html = fs.readFileSync("./Template/index.html", "utf-8");
+const products = JSON.parse(fs.readFileSync("./Data/products.json", "utf-8"));
+const productListHtml = fs.readFileSync("./Template/productList.html", "utf-8");
+const productDetailsHtml = fs.readFileSync(
+  "./Template/productDetails.html",
+  "utf-8"
+);
 
 // let productListHtmlArray = products.map((prod) => {
 //     let output = productListHtml.replace('{{%IMAGES%}}', prod.productImage);
@@ -76,7 +71,6 @@ const productDetailsHtml = fs.readFileSync('./Template/productDetails.html', 'ut
 //     // Replace the id placeholder in the anchor tag
 //     output = output.replace('href="/products?id={{%ID%}}"', `href="/products?id=${prod.id}"`);
 
-    
 //     return output;
 // })
 
@@ -99,7 +93,6 @@ const productDetailsHtml = fs.readFileSync('./Template/productDetails.html', 'ut
 //     // Replace the id placeholder in the anchor tag
 //     output = output.replace('href="/products?id={{%ID%}}"', `href="/products?id=${product.id}"`);
 
-    
 //     return output;
 // }
 // Step 1: Create a Server
@@ -107,9 +100,9 @@ const productDetailsHtml = fs.readFileSync('./Template/productDetails.html', 'ut
 // const server = http.createServer((request, response) => {
 //     let {query, pathname: path} = url.parse(request.url, true);
 //     // console.log(x);
-    
+
 //     // let path = request.url;
-    
+
 //     if(path === '/' || path.toLocaleLowerCase() === '/home'){
 //         response.writeHead(200, {'Content-Type' : 'text/html', 'my-header' : 'Hello world'});
 //         response.end(html.replace('{{%CONTENT%}}', productListHtml));
@@ -127,14 +120,13 @@ const productDetailsHtml = fs.readFileSync('./Template/productDetails.html', 'ut
 //             let productResponseHtml = html.replace('{{%CONTENT%}}', productHtmlArray.join(''));
 //             response.writeHead(200, {'Content-Type' : 'text/html', 'my-header' :''});
 //             response.end(productResponseHtml);
-//             // console.log(productListHtmlArray.join(','));    
+//             // console.log(productListHtmlArray.join(','));
 //         } else{
 //             let prod = products[query.id];
 //             let productDetailsHtmlResponse = replaceHtml(productDetailsHtml, prod);
 //             response.end(html.replace('{{%CONTENT%}}', productDetailsHtmlResponse))
 //         }
-       
-        
+
 //     }
 //     else {
 //         response.writeHead(404, {'Content-Type' : 'text/html', 'my-header' : 'Hello world'});
@@ -144,8 +136,7 @@ const productDetailsHtml = fs.readFileSync('./Template/productDetails.html', 'ut
 //     // request.url
 //     // console.log('A new request received');
 //     // console.log(response);
-    
-    
+
 // });
 
 //Server inherits the handler from EventEmitter class
@@ -154,9 +145,9 @@ const server = http.createServer();
 // server.on('request', (request, response) => {
 //     let {query, pathname: path} = url.parse(request.url, true);
 //     // console.log(x);
-    
+
 //     // let path = request.url;
-    
+
 //     if(path === '/' || path.toLocaleLowerCase() === '/home'){
 //         response.writeHead(200, {'Content-Type' : 'text/html', 'my-header' : 'Hello world'});
 //         response.end(html.replace('{{%CONTENT%}}', productListHtml));
@@ -174,14 +165,13 @@ const server = http.createServer();
 //             let productResponseHtml = html.replace('{{%CONTENT%}}', productHtmlArray.join(''));
 //             response.writeHead(200, {'Content-Type' : 'text/html', 'my-header' :''});
 //             response.end(productResponseHtml);
-//             // console.log(productListHtmlArray.join(','));    
+//             // console.log(productListHtmlArray.join(','));
 //         } else{
 //             let prod = products[query.id];
 //             let productDetailsHtmlResponse = replaceHtml(productDetailsHtml, prod);
 //             response.end(html.replace('{{%CONTENT%}}', productDetailsHtmlResponse))
 //         }
-       
-        
+
 //     }
 //     else {
 //         response.writeHead(404, {'Content-Type' : 'text/html', 'my-header' : 'Hello world'});
@@ -191,63 +181,92 @@ const server = http.createServer();
 //     // request.url
 //     // console.log('A new request received');
 //     // console.log(response);
-    
-    
+
 // })
 // Step 2: Start the Server
 
+//Solution 2: Using Streams
+// server.on('request', (request, response) => {
+//     let rs = fs.createReadStream('./Files/largeFile.txt');
 
-server.on('request', (request, response) => {
-    let rs = fs.createReadStream('./Files/largeFile.txt');
+//     rs.on('data', (chunk)=> {
+//         response.write(chunk);
+//     });
 
-    // rs.on('data', (chunk)=> {
-    //     response.write(chunk);
-    //     response.end();
-    // });
+//     rs.on('end', () => {
+//         response.end();
+//     })
 
-    rs.pipe(response)
+//     // rs.pipe(response);
 
-    rs.on('error', (error) => {
-        response.end(error.message)
-    })
+//     rs.on('error', (error) => {
+//         response.end(error.message)
+//     })
 
-    let ws = fs.createWriteStream('./Files/largeFile.txt');
+// let ws = fs.createWriteStream('./Files/largeFile.txt');
 
-    ws.write('This is the first line\n');
-    ws.write('This is the Second line\n');
-    ws.write('This is the Last line\n');
+// ws.write('This is the first line\n');
+// ws.write('This is the Second line\n');
+// ws.write('This is the Last line\n');
 
-    ws.end('I am done writing to the stream\n');
+// ws.end('I am done writing to the stream\n');
 
-    ws.on('finish', ()=> {
-        console.log('i AM DONE WRITING TO THIS STREAM');
-    });
+// ws.on('finish', ()=> {
+//     console.log('i AM DONE WRITING TO THIS STREAM');
+// });
 
-    ws.on('error', (error)=> {
-        console.log('An error occured while writing to stream');
-        
-    })
+// ws.on('error', (error)=> {
+//     console.log('An error occured while writing to stream');
+
+// })
+// });
+
+//Solution 3: Using pipe method
+
+server.on("request", (req, res) => {
+  let rs = fs.createReadStream("./Files/largeFile.txt");
+  rs.pipe(res); // Advantages: Fixes the issue of backpressure and optimizes code by using the DRY principle
 });
 
-
-server.listen(8000, '127.0.0.1', () => {
-    console.log('Server has started on port 8000');
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Server has started on port 8000");
 });
 
-// Read on DNS, SSL and TLS, How to show css and make script task work, Query string in angular, alias, stream 
+console.log("ANY change");
 
+// Read on DNS, SSL and TLS, How to show css and make script task work, Query string in angular, alias, stream, legacy deeppears.
 
 //Lecture on Emitting and handling custom events
 
-let myEmitter = new user();
+// let myEmitter = new user();
 
+// myEmitter.on('userCreate', (id, name) => {
+//     console.log(`A new user ${name} with ID ${id} is  created`);
+// })
 
-myEmitter.on('userCreate', (id, name) => {
-    console.log(`A new user ${name} with ID ${id} is  created`);
-})
+// myEmitter.on('userCreate', (id, name) => {
+//     console.log(`A new user ${name} with ID ${id} is added to the database`);
+// })
 
-myEmitter.on('userCreate', (id, name) => {
-    console.log(`A new user ${name} with ID ${id} is added to the database`);
-})
+// myEmitter.emit('userCreate', 101, 'Jamike') //Emitting a named event
 
-myEmitter.emit('userCreate', 101, 'Jamike') //Emitting a named event
+// Lecture: Event Loops in Practice
+
+console.log("Program has started");
+
+// Executed in - 2nd Phase
+fs.readFile("./Files/input.txt", "utf-8", () => {
+  console.log("File read complete!!");
+
+  // Executed in - 1st Phase
+  setTimeout(() => {
+    console.log("Timeout callback function");
+  }, 0);
+
+  // Executed in - 3rd Phase
+  setImmediate(() => {
+    console.log("Immediate callback function");
+  });
+});
+
+console.log("Program has completed");
